@@ -46,10 +46,15 @@ if API_KEY != "":
 
 
     template = """
-Given the following extracted parts of a long document and a question, create a final answer, less than 100 words.
-document_context: {context}
-chat_history: {chat_history}
-human_input: {human_input}
+You are a chatbot having a conversation with a human.
+
+Given the following extracted parts of a long document and a question, create a final answer, Up to 3 sentences.
+
+{context}
+
+{chat_history}
+Human: {human_input}
+Chatbot:
 """
 
     usr_input = st.text_input("신한-리포트-챗봇", placeholder="질문을 입력해주세요.")
