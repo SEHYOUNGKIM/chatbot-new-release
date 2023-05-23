@@ -83,6 +83,5 @@ if st.button("Send"):
 
 
 if st.button("초기화"):
-    memory = ""
-    chain = ""
+    st.session_state["messages"] = ""
     prompt_result.text_area('신한-리포트-챗봇', value = "")
