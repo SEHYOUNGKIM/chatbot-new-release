@@ -19,11 +19,12 @@ st.header("신한AI, 투자 보고서 기반 챗봇")
 st.subheader("made by TopGun🛩️")
 st.text('반드시 api 키를 입력하고 엔터를 먼저 눌러주세요.')
 
-loader = PyPDFLoader('신한-pdf-예시파일.pdf')
-data = loader.load()
 
-text_splitter = CharacterTextSplitter(chunk_size=200, chunk_overlap=0, separator = "\n",)
-documents = text_splitter.split_documents(data)
+
+option = st.selectbox(
+'보고서를 선택해 주세요.',
+('음식료.pdf', '화장품 및 섬유.pdf', '신한-연구보고서-1.pdf', '신한-연구보고서-2.pdf'))
+
 
 
 API_KEY = st.sidebar.text_input(":blue[Enter Your OPENAI API-KEY :]", 
@@ -31,6 +32,13 @@ API_KEY = st.sidebar.text_input(":blue[Enter Your OPENAI API-KEY :]",
                     type="password")
 
 if API_KEY != "":
+
+    loader = PyPDFLoader(option)
+    data = loader.load()
+
+    text_splitter = CharacterTextSplitter(chunk_size=200, chunk_overlap=0, separator = "\n",)
+    documents = text_splitter.split_documents(data)
+
     embeddings = OpenAIEmbeddings(openai_api_key = API_KEY)
     chat_model = OpenAI(temperature=0, openai_api_key = API_KEY)
     db = FAISS.from_documents(documents, embeddings)
