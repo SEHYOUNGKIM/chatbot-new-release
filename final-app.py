@@ -2,7 +2,7 @@ import streamlit as st
 # pypdf tiktoken  faiss-cpu
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings.openai import OpenAIEmbeddings
-from langchain.vectorstores import Chroma
+#from langchain.vectorstores import Chroma
 from langchain.document_loaders import TextLoader
 from langchain.vectorstores import FAISS
 from langchain.document_loaders import PyPDFLoader
